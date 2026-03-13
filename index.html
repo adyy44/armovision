@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Armo Vision — Fotografia & Video Immobiliare</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --black: #0c0c0c;
@@ -22,7 +22,7 @@
   body {
     background: var(--black);
     color: var(--white);
-    font-family: 'Syne', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
   }
@@ -36,7 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(to bottom, rgba(12,12,12,0.98), transparent);
+    background: rgba(12,12,12,0.98);
   }
 
   .nav-logo img {
@@ -73,7 +73,7 @@
     cursor: pointer;
     transition: all 0.3s;
     text-decoration: none;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 400;
     border-radius: 100px;
   }
@@ -97,11 +97,7 @@
   .hero-bg {
     position: absolute;
     inset: 0;
-    background-image: url('images/property-photography-cala-de-mijas-spain-by-photographer-michal-carbol-16-2048x1365-1-high.webp');
-    background-size: cover;
-    background-position: center top;
-    filter: grayscale(100%);
-    animation: heroZoom 8s ease-out forwards;
+    background: var(--white);
   }
 
   @keyframes heroZoom {
@@ -109,16 +105,7 @@
     to { transform: scale(1); }
   }
 
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to top,
-      rgba(12,12,12,0.95) 0%,
-      rgba(12,12,12,0.4) 50%,
-      rgba(12,12,12,0.15) 100%
-    );
-  }
+  .hero-overlay { display: none; }
 
   .hero-content {
     position: relative;
@@ -136,31 +123,31 @@
     font-size: 10px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: rgba(248,248,246,0.4);
+    color: rgba(12,12,12,0.4);
     margin-bottom: 24px;
     font-weight: 400;
   }
 
   .hero-title {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Libre Baskerville', serif;
     font-size: clamp(48px, 6.5vw, 88px);
     font-weight: 400;
     line-height: 1.0;
     letter-spacing: -0.02em;
     margin-bottom: 32px;
-    color: var(--white);
+    color: var(--black);
   }
 
   .hero-title em {
     font-style: italic;
-    color: rgba(248,248,246,0.45);
+    color: rgba(12,12,12,0.45);
     font-weight: 400;
   }
 
   .hero-sub {
-    font-size: 17px;
-    color: rgba(248,248,246,0.45);
-    max-width: 480px;
+    font-size: 15px;
+    color: rgba(12,12,12,0.55);
+    max-width: 440px;
     line-height: 1.8;
     margin-bottom: 48px;
     font-weight: 300;
@@ -173,14 +160,14 @@
   }
 
   .btn-primary {
-    background: var(--white);
-    color: var(--black);
+    background: var(--black);
+    color: var(--white);
     padding: 15px 40px;
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     text-decoration: none;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
     transition: all 0.3s;
     display: inline-block;
@@ -188,17 +175,17 @@
   }
 
   .btn-primary:hover {
-    background: var(--off-white);
+    background: var(--dark-gray);
     transform: translateY(-2px);
   }
 
   .btn-ghost {
-    color: rgba(248,248,246,0.55);
+    color: rgba(12,12,12,0.6);
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     text-decoration: none;
-    border: 1px solid rgba(248,248,246,0.2);
+    border: 1px solid rgba(12,12,12,0.25);
     padding: 15px 40px;
     transition: all 0.3s;
     font-weight: 400;
@@ -206,9 +193,9 @@
   }
 
   .btn-ghost:hover {
-    color: var(--white);
-    border-color: var(--white);
-    background: rgba(248,248,246,0.05);
+    color: var(--black);
+    border-color: var(--black);
+    background: rgba(12,12,12,0.05);
   }
 
   /* SECTION BASICS */
@@ -224,7 +211,7 @@
   }
 
   .section-title {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Libre Baskerville', serif;
     font-size: clamp(36px, 4vw, 58px);
     font-weight: 400;
     line-height: 1.1;
@@ -241,7 +228,7 @@
 
   /* ABOUT STRIP */
   .about-strip {
-    background: var(--dark-gray);
+    background: var(--black);
     padding: 0 60px;
     display: flex;
     flex-direction: column;
@@ -260,7 +247,7 @@
   .stat-item:last-child { border-bottom: none; }
 
   .stat-number {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Libre Baskerville', serif;
     font-size: 64px;
     font-weight: 400;
     color: var(--white);
@@ -317,7 +304,7 @@
   .service-card:hover::before { transform: scaleX(1); }
 
   .service-num {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Libre Baskerville', serif;
     font-size: 72px;
     font-weight: 400;
     color: rgba(255,255,255,0.04);
@@ -334,7 +321,7 @@
   }
 
   .service-title {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Libre Baskerville', serif;
     font-size: 26px;
     font-weight: 400;
     margin-bottom: 16px;
@@ -384,7 +371,7 @@
     padding: 14px 40px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
     background: transparent; border: none; border-bottom: 1px solid transparent;
     color: rgba(248,248,246,0.3); cursor: pointer; transition: all 0.3s;
-    font-family: 'Syne', sans-serif; margin-bottom: -1px; font-weight: 400;
+    font-family: 'Inter', sans-serif; margin-bottom: -1px; font-weight: 400;
   }
 
   .portfolio-tab.active { color: var(--white); border-bottom-color: var(--white); }
@@ -496,7 +483,7 @@
   }
 
   .package-name {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Libre Baskerville', serif;
     font-size: 26px;
     font-weight: 400;
     margin-bottom: 8px;
@@ -584,7 +571,7 @@
   }
 
   .why-item-title {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Libre Baskerville', serif;
     font-size: 20px;
     font-weight: 400;
     color: var(--white);
@@ -611,7 +598,7 @@
   .contact::before {
     content: 'ARMO';
     position: absolute;
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Libre Baskerville', serif;
     font-size: 280px;
     font-weight: 400;
     color: rgba(0,0,0,0.04);
@@ -625,7 +612,7 @@
   .contact .section-eyebrow { color: rgba(12,12,12,0.35); }
 
   .contact-title {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Libre Baskerville', serif;
     font-size: clamp(44px, 6vw, 76px);
     font-weight: 400;
     margin-bottom: 20px;
@@ -646,7 +633,7 @@
   }
 
   .contact-email {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Libre Baskerville', serif;
     font-size: 24px;
     color: var(--black);
     text-decoration: none;
@@ -699,11 +686,14 @@
   /* REVEAL */
   .reveal {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.9s ease, transform 0.9s ease;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
   .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Fallback: if JS fails, still show content */
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
 </style>
 </head>
 <body>
@@ -965,8 +955,8 @@
   <p class="section-eyebrow" style="position:relative">Contatti</p>
   <h2 class="contact-title">Inizia il tuo progetto.</h2>
   <p class="contact-sub">Raccontaci il tuo immobile e ti risponderemo entro 24 ore con una proposta su misura.</p>
-  <a href="/cdn-cgi/l/email-protection#553c3b333a153427383a233c263c3a3b7b3c21" class="contact-email"><span class="__cf_email__" data-cfemail="b6dfd8d0d9f6d7c4dbd9c0dfc5dfd9d898dfc2">[email&#160;protected]</span></a>
-  <a href="/cdn-cgi/l/email-protection#acc5c2cac3eccddec1c3dac5dfc5c3c282c5d8" class="btn-primary" style="display:inline-block">Richiedi Preventivo</a>
+  <a href="/cdn-cgi/l/email-protection#aac3c4ccc5eacbd8c7c5dcc3d9c3c5c484c3de" class="contact-email"><span class="__cf_email__" data-cfemail="20494e464f6041524d4f564953494f4e0e4954">[email&#160;protected]</span></a>
+  <a href="/cdn-cgi/l/email-protection#d8b1b6beb798b9aab5b7aeb1abb1b7b6f6b1ac" class="btn-primary" style="display:inline-block">Richiedi Preventivo</a>
 </section>
 
 <!-- FOOTER -->
@@ -984,8 +974,10 @@
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(r => observer.observe(r));
+  // Fallback: show all reveals after 1.5s if not triggered
+  setTimeout(() => { reveals.forEach(r => r.classList.add('visible')); }, 1500);
 
   const lbPhotos = ["new1.webp","photo3.jpg","new3.webp","photo4.jpg","new4.jpg","new5.jpg","new2.jpg","property-photography-cala-de-mijas-spain-by-photographer-michal-carbol-16-2048x1365-1-high.webp","photo2.webp","IMG_9916-Edit.webp","photo5.jpg"];
   let lbCur = 0;
