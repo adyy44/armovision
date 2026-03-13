@@ -1054,15 +1054,16 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(r => observer.observe(r));
-  // Fallback: show all reveals after 1.5s if not triggered
   setTimeout(() => { reveals.forEach(r => r.classList.add('visible')); }, 1500);
 
+  // Lightbox
   const lbPhotos = ["new1.webp","photo3.jpg","new3.webp","photo4.jpg","new4.jpg","new5.jpg","new2.jpg","property-photography-cala-de-mijas-spain-by-photographer-michal-carbol-16-2048x1365-1-high.webp","photo2.webp","IMG_9916-Edit.webp","photo5.jpg"];
   let lbCur = 0;
   document.getElementById('lb-total').textContent = lbPhotos.length;
@@ -1097,14 +1098,32 @@
     if (e.key === 'ArrowRight') lbNav(1);
   });
 
+  // Portfolio tabs
   function switchTab(tab) {
-    document.querySelectorAll('.portfolio-tab').forEach((t,i) => {
-      t.classList.toggle('active', (i===0 && tab==='foto') || (i===1 && tab==='3d'));
+    document.querySelectorAll('.portfolio-tab').forEach((t, i) => {
+      t.classList.toggle('active', (i === 0 && tab === 'foto') || (i === 1 && tab === '3d'));
     });
-    document.getElementById('panel-foto').style.display = (tab==='foto') ? 'block' : 'none';
-    document.getElementById('panel-3d').style.display = (tab==='3d') ? 'block' : 'none';
-    document.querySelector('.portfolio').style.background = (tab==='3d') ? '#f5f5f3' : '#0c0c0c';
-    document.querySelector('#portfolio .section-eyebrow').style.color = (tab==='3d') ? 'rgba(12,12,12,0.35)' : '';
-    document.querySelector('#portfolio .section-title').style.color = (tab==='3d') ? '#0c0c0c' : '';
-    document.querySelector('.portfolio-tabs').style.filter = (tab==='3d') ? 'invert(1)' : '';
+    var fotoPanel = document.getElementById('panel-foto');
+    var threeDPanel = document.getElementById('panel-3d');
+    var portfolio = document.querySelector('.portfolio');
+    var eyebrow = document.querySelector('#portfolio .section-eyebrow');
+    var title = document.querySelector('#portfolio .section-title');
+    var tabs = document.querySelector('.portfolio-tabs');
+
+    if (tab === '3d') {
+      fotoPanel.style.display = 'none';
+      threeDPanel.style.display = 'block';
+      portfolio.style.background = '#f5f5f3';
+      if (eyebrow) eyebrow.style.color = 'rgba(12,12,12,0.35)';
+      if (title) title.style.color = '#0c0c0c';
+      if (tabs) tabs.style.filter = 'invert(1)';
+    } else {
+      fotoPanel.style.display = 'block';
+      threeDPanel.style.display = 'none';
+      portfolio.style.background = '#0c0c0c';
+      if (eyebrow) eyebrow.style.color = '';
+      if (title) title.style.color = '';
+      if (tabs) tabs.style.filter = '';
+    }
   }
+</script>
