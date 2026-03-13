@@ -89,9 +89,11 @@
     height: 100vh;
     position: relative;
     display: flex;
-    align-items: flex-end;
-    padding: 0 60px 80px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 60px;
     overflow: hidden;
+    text-align: center;
   }
 
   .hero-bg {
@@ -112,6 +114,7 @@
     z-index: 2;
     max-width: 900px;
     animation: fadeUp 1.2s ease-out 0.3s both;
+    text-align: center;
   }
 
   @keyframes fadeUp {
@@ -147,16 +150,19 @@
   .hero-sub {
     font-size: 15px;
     color: rgba(12,12,12,0.55);
-    max-width: 440px;
+    max-width: 500px;
     line-height: 1.8;
     margin-bottom: 48px;
     font-weight: 300;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-actions {
     display: flex;
     gap: 24px;
     align-items: center;
+    justify-content: center;
   }
 
   .btn-primary {
@@ -362,20 +368,20 @@
   .portfolio-tabs {
     padding: 0 60px;
     display: flex;
-    gap: 0;
+    gap: 10px;
     margin-bottom: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding-bottom: 40px;
   }
 
   .portfolio-tab {
-    padding: 14px 40px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-    background: transparent; border: none; border-bottom: 1px solid transparent;
-    color: rgba(248,248,246,0.3); cursor: pointer; transition: all 0.3s;
-    font-family: 'Inter', sans-serif; margin-bottom: -1px; font-weight: 400;
+    padding: 12px 32px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    background: transparent; border: 1px solid rgba(248,248,246,0.2);
+    color: rgba(248,248,246,0.4); cursor: pointer; transition: all 0.3s;
+    font-family: 'Inter', sans-serif; font-weight: 400; border-radius: 100px;
   }
 
-  .portfolio-tab.active { color: var(--white); border-bottom-color: var(--white); }
-  .portfolio-tab:hover:not(.active) { color: rgba(248,248,246,0.6); }
+  .portfolio-tab.active { color: var(--black); background: var(--white); border-color: var(--white); }
+  .portfolio-tab:hover:not(.active) { color: rgba(248,248,246,0.8); border-color: rgba(248,248,246,0.4); }
 
   .portfolio-panel { display: none; }
   .portfolio-panel.active { display: block; }
@@ -529,33 +535,14 @@
 
   /* WHY US */
   .why {
-    background: var(--black);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    padding: 0;
+    background: var(--dark-gray);
+    padding: 100px 60px;
   }
 
-  .why-image {
-    position: relative;
-    overflow: hidden;
-    min-height: 600px;
-  }
-
-  .why-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(100%);
-  }
+  .why-image { display: none; }
 
   .why-content {
-    padding: 100px 72px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: var(--dark-gray);
+    max-width: 800px;
   }
 
   .why-items {
@@ -694,6 +681,107 @@
 
   /* Fallback: if JS fails, still show content */
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+  @media (max-width: 768px) {
+
+    nav {
+      padding: 20px 24px;
+    }
+
+    .nav-links { display: none; }
+
+    .nav-cta {
+      padding: 8px 18px;
+      font-size: 10px;
+    }
+
+    .hero {
+      padding: 0 24px;
+      align-items: flex-end;
+      padding-bottom: 60px;
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 10vw, 56px);
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      max-width: 100%;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .btn-primary, .btn-ghost {
+      width: 100%;
+      text-align: center;
+      padding: 14px 20px;
+    }
+
+    .about-strip {
+      padding: 0 24px;
+    }
+
+    .stat-number { font-size: 44px; min-width: 120px; }
+
+    section { padding: 60px 24px; }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 1px;
+    }
+
+    .service-card { padding: 32px 24px; }
+    .service-num { font-size: 48px; top: 12px; right: 20px; }
+
+    .portfolio-header { padding: 0 24px; flex-direction: column; gap: 20px; }
+    .portfolio-tabs { padding: 0 24px; flex-wrap: wrap; }
+
+    .photo-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .photo-item {
+      grid-column: unset !important;
+      grid-row: unset !important;
+      height: 240px;
+    }
+
+    .floor-grid-wrap { padding: 24px; }
+    .floor-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+
+    .packages-grid {
+      grid-template-columns: 1fr;
+      gap: 1px;
+    }
+
+    .package-card { padding: 32px 24px; }
+    .package-card.featured { margin-top: 8px; }
+    .package-card.featured::after { font-size: 8px; }
+
+    .why { padding: 60px 24px; }
+
+    .contact { padding: 80px 24px; }
+    .contact-title { font-size: clamp(32px, 9vw, 52px); }
+
+    footer {
+      padding: 32px 24px;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .footer-links { gap: 20px; }
+
+    .section-title { font-size: clamp(28px, 7vw, 44px); }
+  }
 </style>
 </head>
 <body>
@@ -926,12 +1014,9 @@
 
 <!-- WHY US -->
 <section class="why" id="perche-noi">
-  <div class="why-image">
-    <img src="3-2-high.webp" alt="Before After">
-  </div>
   <div class="why-content reveal">
     <p class="section-eyebrow">Perché Noi</p>
-    <h2 class="section-title" style="max-width:400px">Un partner operativo,<br>non un fornitore.</h2>
+    <h2 class="section-title">Un partner operativo.</h2>
     <div class="white-line"></div>
     <div class="why-items">
       <div class="why-item">
@@ -947,7 +1032,6 @@
         <div class="why-item-text">Centinaia di immobili documentati in Italia e nei Paesi Bassi. Un metodo basato su monitoraggio costante e ottimizzazione continua.</div>
       </div>
     </div>
-  </div>
 </section>
 
 <!-- CONTACT -->
@@ -955,14 +1039,14 @@
   <p class="section-eyebrow" style="position:relative">Contatti</p>
   <h2 class="contact-title">Inizia il tuo progetto.</h2>
   <p class="contact-sub">Raccontaci il tuo immobile e ti risponderemo entro 24 ore con una proposta su misura.</p>
-  <a href="/cdn-cgi/l/email-protection#aac3c4ccc5eacbd8c7c5dcc3d9c3c5c484c3de" class="contact-email"><span class="__cf_email__" data-cfemail="20494e464f6041524d4f564953494f4e0e4954">[email&#160;protected]</span></a>
-  <a href="/cdn-cgi/l/email-protection#d8b1b6beb798b9aab5b7aeb1abb1b7b6f6b1ac" class="btn-primary" style="display:inline-block">Richiedi Preventivo</a>
+  <a href="mailto:info@armovision.it" class="contact-email">info@armovision.it</a>
+  <a href="mailto:info@armovision.it" class="btn-primary" style="display:inline-block">Richiedi Preventivo</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo"><img src="logo.webp" alt="Armo Vision"></div>
-  <div class="footer-copy">© 2025 Armo Vision — armovision.it</div>
+  <div class="footer-copy">© 2026 Armo Vision — armovision.it</div>
   <div class="footer-links">
     <a href="#servizi">Servizi</a>
     <a href="#portfolio">Portfolio</a>
@@ -970,7 +1054,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -1017,6 +1101,13 @@
     document.querySelectorAll('.portfolio-tab').forEach((t,i) => {
       t.classList.toggle('active', (i===0 && tab==='foto') || (i===1 && tab==='3d'));
     });
+    document.getElementById('panel-foto').style.display = (tab==='foto') ? 'block' : 'none';
+    document.getElementById('panel-3d').style.display = (tab==='3d') ? 'block' : 'none';
+    document.querySelector('.portfolio').style.background = (tab==='3d') ? '#f5f5f3' : '#0c0c0c';
+    document.querySelector('#portfolio .section-eyebrow').style.color = (tab==='3d') ? 'rgba(12,12,12,0.35)' : '';
+    document.querySelector('#portfolio .section-title').style.color = (tab==='3d') ? '#0c0c0c' : '';
+    document.querySelector('.portfolio-tabs').style.filter = (tab==='3d') ? 'invert(1)' : '';
+  });
     document.getElementById('panel-foto').style.display = (tab==='foto') ? 'block' : 'none';
     document.getElementById('panel-3d').style.display = (tab==='3d') ? 'block' : 'none';
     document.querySelector('.portfolio').style.background = (tab==='3d') ? '#f5f5f3' : '#0c0c0c';
