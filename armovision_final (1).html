@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- v5 --><title>Armo Vision — Fotografia & Video Immobiliare</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0c0c0c;
+    --white: #f8f8f6;
+    --off-white: #f0eeea;
+    --mid: #888;
+    --light-gray: #e8e8e8;
+    --dark-gray: #1a1a1a;
+    --border: rgba(255,255,255,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 28px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(12,12,12,0.97);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .nav-logo img {
+    height: 44px;
+    filter: invert(1);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 48px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(248,248,246,0.5);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    font-weight: 400;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1px solid rgba(248,248,246,0.3);
+    color: rgba(248,248,246,0.7);
+    padding: 10px 28px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    border-radius: 100px;
+  }
+
+  .nav-cta:hover {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--white);
+  }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 60px;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--white);
+  }
+
+  .hero-bg::after {
+    content: 'ARMO';
+    position: absolute;
+    font-family: 'DM Serif Display', serif;
+    font-size: 32vw;
+    font-weight: 500;
+    color: rgba(12,12,12,0.04);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: -0.02em;
+  }
+
+  @keyframes heroZoom {
+    from { transform: scale(1.04); }
+    to { transform: scale(1); }
+  }
+
+  .hero-overlay { display: none; }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    animation: fadeUp 1.2s ease-out 0.3s both;
+    text-align: center;
+    margin-top: 0;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(12,12,12,0.4);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(52px, 7.5vw, 96px);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+    color: var(--black);
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: rgba(12,12,12,0.45);
+    font-weight: 400;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(12,12,12,0.55);
+    max-width: 500px;
+    line-height: 1.85;
+    margin-bottom: 48px;
+    font-weight: 400;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+    padding: 15px 40px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    transition: all 0.3s;
+    display: inline-block;
+    border-radius: 100px;
+  }
+
+  .btn-primary:hover {
+    background: var(--dark-gray);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    color: rgba(12,12,12,0.6);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(12,12,12,0.25);
+    padding: 15px 40px;
+    transition: all 0.3s;
+    font-weight: 400;
+    border-radius: 100px;
+  }
+
+  .btn-ghost:hover {
+    color: var(--black);
+    border-color: var(--black);
+    background: rgba(12,12,12,0.05);
+  }
+
+  /* SECTION BASICS */
+  section { padding: 120px 60px; }
+
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(248,248,246,0.35);
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+
+  .section-body {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(248,248,246,0.5);
+    max-width: 520px;
+  }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    background: var(--black);
+    padding: 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--black);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 40px 40px 40px 0;
+    border-right: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .stat-item:last-child { border-right: none; padding-left: 40px; padding-right: 0; }
+  .stat-item:nth-child(2) { padding-left: 40px; }
+
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 56px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(248,248,246,0.35);
+    font-weight: 400;
+  }
+
+  /* SERVICES */
+  .services { background: var(--black); }
+  .services .section-eyebrow { color: rgba(248,248,246,0.35); }
+  .services .section-title { color: var(--white); }
+  .services .white-line { background: rgba(255,255,255,0.12); }
+  .services .section-body { color: rgba(248,248,246,0.5); }
+  .packages .section-body { color: rgba(12,12,12,0.5); }
+
+  .services-header {
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(12,12,12,0.08);
+  }
+
+  .service-card {
+    padding: 36px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+  }
+
+  .service-card { background: var(--black) !important; }
+  .service-card:hover { background: var(--dark-gray) !important; }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--white);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: rgba(12,12,12,0.06);
+    position: absolute;
+    top: 20px; right: 40px;
+    line-height: 1;
+  }
+
+  .service-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 16px;
+    opacity: 0.4;
+    filter: none;
+  }
+
+  .service-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: var(--white);
+    letter-spacing: -0.3px;
+  }
+
+  .service-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(248,248,246,0.55);
+    margin-bottom: 16px;
+  }
+
+  .service-list { list-style: none; margin-top: 20px; }
+
+  .service-list li {
+    font-size: 14px;
+    color: rgba(248,248,246,0.55);
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .service-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: rgba(248,248,246,0.25);
+    font-size: 11px;
+  }
+
+  /* PORTFOLIO */
+  .portfolio { background: var(--off-white); padding: 100px 0 0; }
+  .portfolio-header { padding: 0 60px; margin-bottom: 60px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .portfolio .section-eyebrow { color: rgba(12,12,12,0.35); }
+  .portfolio .section-title { color: var(--black); }
+
+  .portfolio-tabs {
+    padding: 0 60px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0;
+    padding-bottom: 40px;
+  }
+
+  .portfolio-tab {
+    padding: 12px 32px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    background: transparent; border: 1px solid rgba(12,12,12,0.2);
+    color: rgba(12,12,12,0.4); cursor: pointer; transition: all 0.3s;
+    font-family: 'DM Sans', sans-serif; font-weight: 400; border-radius: 100px;
+  }
+
+  .portfolio-tab.active { color: var(--white); background: var(--black); border-color: var(--black); }
+  .portfolio-tab:hover:not(.active) { color: rgba(12,12,12,0.8); border-color: rgba(12,12,12,0.4); }
+
+  .portfolio-panel { display: none; }
+  .portfolio-panel.active { display: block; }
+  #panel-3d { display: none; }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 260px;
+    gap: 2px;
+    margin-top: 2px;
+    filter: grayscale(30%);
+  }
+
+  .photo-item { overflow: hidden; position: relative; cursor: pointer; }
+  .photo-item:nth-child(1) { grid-column: span 7; grid-row: span 2; }
+  .photo-item:nth-child(2) { grid-column: span 5; grid-row: span 1; }
+  .photo-item:nth-child(3) { grid-column: span 5; grid-row: span 1; }
+  .photo-item:nth-child(4) { grid-column: span 4; grid-row: span 2; }
+  .photo-item:nth-child(5) { grid-column: span 4; grid-row: span 1; }
+  .photo-item:nth-child(6) { grid-column: span 4; grid-row: span 1; }
+  .photo-item:nth-child(7) { grid-column: span 5; grid-row: span 2; }
+  .photo-item:nth-child(8) { grid-column: span 7; grid-row: span 2; }
+  .photo-item:nth-child(9) { grid-column: span 4; grid-row: span 2; }
+  .photo-item:nth-child(10) { grid-column: span 3; grid-row: span 1; }
+  .photo-item:nth-child(11) { grid-column: span 5; grid-row: span 1; }
+
+  .photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .photo-item:hover img { transform: scale(1.05); }
+
+  .photo-overlay {
+    position: absolute; inset: 0;
+    background: rgba(12,12,12,0.35);
+    opacity: 0; transition: opacity 0.4s;
+    display: flex; align-items: flex-end; padding: 20px;
+  }
+
+  .photo-item:hover .photo-overlay { opacity: 1; }
+
+  .photo-overlay-icon {
+    width: 36px; height: 36px; border: 1px solid rgba(248,248,246,0.5);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-size: 16px; margin-left: auto;
+  }
+
+  /* LIGHTBOX */
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(5,5,5,0.98); align-items: center; justify-content: center; }
+  .lightbox.open { display: flex; }
+  .lightbox-img { max-width: 90vw; max-height: 88vh; object-fit: contain; display: block; filter: grayscale(20%); }
+  .lightbox-close { position: absolute; top: 28px; right: 36px; color: rgba(248,248,246,0.4); font-size: 28px; cursor: pointer; line-height: 1; transition: color 0.2s; font-weight: 300; }
+  .lightbox-close:hover { color: var(--white); }
+  .lightbox-prev, .lightbox-next {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: transparent; border: 1px solid rgba(248,248,246,0.15);
+    color: rgba(248,248,246,0.6); width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 18px; transition: all 0.3s;
+  }
+  .lightbox-prev:hover, .lightbox-next:hover { background: var(--white); color: var(--black); border-color: var(--white); }
+  .lightbox-prev { left: 32px; }
+  .lightbox-next { right: 32px; }
+  .lightbox-counter { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); font-size: 10px; letter-spacing: 0.2em; color: rgba(248,248,246,0.3); }
+
+  /* 3D Grid */
+  .floor-grid-wrap { padding: 40px 60px; background: #ffffff; }
+  .floor-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .floor-item { background: #fff; overflow: hidden; border: none; }
+  .floor-item:hover { transform: translateY(-2px); transition: transform 0.3s; }
+  .floor-item img { width: 100%; aspect-ratio: 4/3; object-fit: contain; display: block; padding: 8px; background: #fff; }
+
+  /* PACKAGES */
+  .packages { background: var(--off-white); }
+  .packages .section-eyebrow { color: rgba(12,12,12,0.35); }
+  .packages .section-title { color: var(--black); }
+
+  .packages-header { text-align: center; margin-bottom: 72px; }
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .package-card {
+    background: var(--black);
+    padding: 48px 36px;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .package-card.featured {
+    background: var(--black);
+  }
+  .package-card.featured .package-name,
+  .package-card.featured .package-features li { color: var(--white) !important; }
+  .package-card.featured .package-tagline { color: rgba(248,248,246,0.4) !important; }
+  .package-card.featured .package-features li { border-bottom-color: rgba(255,255,255,0.07) !important; }
+  .package-card.featured .package-footer { color: rgba(248,248,246,0.35) !important; }
+
+
+  .package-features li {
+    font-size: 15px;
+    color: rgba(248,248,246,0.8);
+    font-weight: 400;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .package-card.featured::after {
+    content: 'CONSIGLIATO';
+    position: absolute;
+    top: -1px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--black);
+    color: var(--white);
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    padding: 5px 16px;
+    font-weight: 500;
+  }
+
+  .package-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--white);
+    letter-spacing: -0.3px;
+  }
+
+  .package-tagline {
+    font-size: 10px;
+    color: rgba(248,248,246,0.4);
+    letter-spacing: 0.15em;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+  }
+
+  .package-features { list-style: none; }
+
+
+  .package-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: rgba(248,248,246,0.35);
+    font-size: 10px;
+  }
+
+  .package-footer {
+    margin-top: 32px;
+    font-size: 12px;
+    color: rgba(248,248,246,0.3);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* WHY US */
+  .why {
+    background: var(--black);
+    padding: 100px 60px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .why-image { display: none; }
+
+  .why-content {
+    max-width: 800px;
+  }
+
+  .why-items {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .why-item {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 28px;
+  }
+
+  .why-item-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+  }
+
+  .why-item-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(248,248,246,0.75);
+  }
+
+  /* CONTACT */
+  .contact {
+    background: var(--white);
+    color: var(--black);
+    text-align: center;
+    padding: 140px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact::before {
+    content: 'ARMO';
+    position: absolute;
+    font-family: 'DM Serif Display', serif;
+    font-size: 280px;
+    font-weight: 400;
+    color: rgba(0,0,0,0.04);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .contact .section-eyebrow { color: rgba(12,12,12,0.35); }
+
+  .contact-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(44px, 6vw, 76px);
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: var(--black);
+    position: relative;
+    letter-spacing: -1px;
+  }
+
+  .contact-sub {
+    font-size: 14px;
+    color: rgba(12,12,12,0.45);
+    margin-bottom: 52px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+    position: relative;
+  }
+
+  .contact-email {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--black);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    position: relative;
+    transition: opacity 0.3s;
+    display: block;
+    margin-bottom: 44px;
+  }
+
+  .contact-email:hover { opacity: 0.5; }
+
+  .contact .btn-primary {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .contact .btn-primary:hover { background: var(--dark-gray); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer-logo img { height: 32px; filter: invert(1); opacity: 0.5; }
+
+  .footer-copy { font-size: 11px; color: rgba(248,248,246,0.2); letter-spacing: 0.08em; }
+
+  .footer-links { display: flex; gap: 32px; }
+
+  .footer-links a {
+    font-size: 11px;
+    color: rgba(248,248,246,0.25);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  /* DIVIDER */
+  .white-line { width: 40px; height: 1px; background: rgba(248,248,246,0.2); margin: 28px 0; }
+
+  /* REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Fallback: if JS fails, still show content */
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+  @media (max-width: 768px) {
+
+    nav {
+      padding: 20px 24px;
+    }
+
+    .nav-links { display: none; }
+
+    .nav-cta {
+      padding: 8px 18px;
+      font-size: 10px;
+    }
+
+    .hero {
+      padding: 0 24px;
+      align-items: flex-end;
+      padding-bottom: 60px;
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 10vw, 56px);
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      max-width: 100%;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .btn-primary, .btn-ghost {
+      width: 100%;
+      text-align: center;
+      padding: 14px 20px;
+    }
+
+    .about-strip {
+      padding: 0 24px;
+    }
+
+    .stat-number { font-size: 44px; min-width: 120px; }
+
+    section { padding: 60px 24px; }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 1px;
+    }
+
+    .service-card { padding: 32px 24px; }
+    .service-num { font-size: 48px; top: 12px; right: 20px; }
+
+    .portfolio-header { padding: 0 24px; flex-direction: column; gap: 20px; }
+    .portfolio-tabs { padding: 0 24px; flex-wrap: wrap; }
+
+    .photo-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .photo-item {
+      grid-column: unset !important;
+      grid-row: unset !important;
+      height: 240px;
+    }
+
+    .floor-grid-wrap { padding: 24px; }
+    .floor-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+
+    .packages-grid {
+      grid-template-columns: 1fr;
+      gap: 1px;
+    }
+
+    .package-card { padding: 32px 24px; }
+    .package-card.featured { margin-top: 8px; }
+    .package-card.featured::after { font-size: 8px; }
+
+    .why { padding: 60px 24px; }
+
+    .contact { padding: 80px 24px; }
+    .contact-title { font-size: clamp(32px, 9vw, 52px); }
+
+    footer {
+      padding: 32px 24px;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .footer-links { gap: 20px; }
+
+    .section-title { font-size: clamp(28px, 7vw, 44px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><img src="logo.webp" alt="Armo Vision"></a>
+  <ul class="nav-links">
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#pacchetti">Pacchetti</a></li>
+    <li><a href="#perche-noi">Chi Siamo</a></li>
+  </ul>
+  <a href="#contatti" class="nav-cta">Richiedi Preventivo</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Per agenti immobiliari · Agenzie · Host Airbnb</p>
+    <h1 class="hero-title">La prima impressione<br><em>è online.</em></h1>
+    <p class="hero-sub">Prima di conoscerti, il tuo cliente ha già deciso. Noi curiamo quella prima impressione.</p>
+    <div class="hero-actions">
+      <a href="#pacchetti" class="btn-primary">Scopri i Pacchetti</a>
+      <a href="#portfolio" class="btn-ghost">Vedi il Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP STATS -->
+<div class="about-strip reveal">
+  <div class="stat-item">
+    <div class="stat-number">500+</div>
+    <div class="stat-label">Immobili Documentati</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">4</div>
+    <div class="stat-label">Servizi Specializzati</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">IT · NL</div>
+    <div class="stat-label">Operativi in Italia e Paesi Bassi</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="servizi">
+  <div class="services-header reveal">
+    <p class="section-eyebrow">I Nostri Servizi</p>
+    <h2 class="section-title">Fotografia, produzione video, 3D e post produzione.</h2>
+    <div class="white-line"></div>
+  </div>
+
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <span class="service-num">01</span>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="1.5">
+        <rect x="6" y="14" width="36" height="26" rx="3"/>
+        <circle cx="24" cy="27" r="8"/>
+        <circle cx="24" cy="27" r="4"/>
+        <path d="M16 14l3-6h10l3 6"/>
+        <circle cx="37" cy="20" r="2" fill="#ffffff" stroke="none"/>
+      </svg>
+      <h3 class="service-title">Fotografia</h3>
+      <p class="service-text">Realizziamo servizi di fotografia immobiliare professionale per interni ed esterni, studiando attentamente luce, composizione e prospettive.</p>
+      <p class="service-text">Consegnate in alta risoluzione, pronte per portali, siti, brochure e social.</p>
+    </div>
+
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="1.5">
+        <rect x="6" y="8" width="36" height="28" rx="2"/>
+        <path d="M16 40h16M24 36v4"/>
+        <path d="M14 20l6 6 8-10"/>
+      </svg>
+      <h3 class="service-title">Post-Produzione</h3>
+      <p class="service-text">Hai già foto o video ma vuoi renderli più efficaci? Ottimizziamo qualità visiva, colore, luminosità e impatto generale.</p>
+      <ul class="service-list">
+        <li>Correzione colore e bilanciamento luci</li>
+        <li>Ritocco fotografico professionale</li>
+        <li>Montaggio video e ottimizzazione</li>
+        <li>Adattamento formati social media</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <span class="service-num">03</span>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="1.5">
+        <rect x="4" y="12" width="30" height="24" rx="3"/>
+        <path d="M34 18l10-6v24l-10-6V18z"/>
+      </svg>
+      <h3 class="service-title">Video</h3>
+      <p class="service-text">Riprese fluide e stabilizzate per mostrare l'immobile in modo chiaro, dinamico e coinvolgente.</p>
+      <ul class="service-list">
+        <li>Video cinematici per sito e YouTube</li>
+        <li>Reels e TikTok verticali</li>
+        <li>Walkthrough completi</li>
+        <li>Video con agente in scena</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <span class="service-num">04</span>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="1.5">
+        <path d="M24 4L44 16v16L24 44 4 32V16L24 4z"/>
+        <path d="M24 4v40M4 16l20 12 20-12"/>
+      </svg>
+      <h3 class="service-title">3D Floor Plans</h3>
+      <p class="service-text">Planimetrie dettagliate e floor plans professionali per rappresentare in modo preciso la disposizione degli spazi.</p>
+      <p class="service-text">Su richiesta: rendering 3D o Virtual Tour integrati.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="portfolio-header reveal">
+    <div>
+      <p class="section-eyebrow">Portfolio</p>
+      <h2 class="section-title" style="margin-bottom:0">Ogni spazio,<br>nella sua luce migliore.</h2>
+    </div>
+  </div>
+
+  <div class="portfolio-tabs">
+    <button class="portfolio-tab active" onclick="switchTab('foto')">Fotografia & Video</button>
+    <button class="portfolio-tab" onclick="switchTab('3d')">3D Floor Plans</button>
+  </div>
+
+  <div class="portfolio-panel active" id="panel-foto">
+    <div class="photo-grid">
+      <div class="photo-item" onclick="openLightbox(0)"><img src="new1.webp" alt="Portfolio"><div class="photo-overlay"><div class="photo-overlay-icon">+</div></div></div>
+      <div class="photo-item" onclick="openLightbox(1)"><img src="photo3.jpg" alt="Portfolio"><div class="photo-overlay"><div class="photo-overlay-icon">+</div></div></div>
+      <div class="photo-item" onclick="openLightbox(2)"><img src="new3.webp" alt="Portfolio"><div class="photo-overlay"><div class="photo-overlay-icon">+</div></div></div>
+      <div class="photo-item" onclick="openLightbox(3)"><img src="photo4.jpg" alt="Portfolio"><div class="photo-overlay"><div class="photo-overlay-icon">+</div></div></div>
+      <div class="photo-item" onclick="openLightbox(4)"><img src="new4.jpg" alt="Portfolio"><div class="photo-overlay"><div class="photo-overlay-icon">+</div></div></div>
+      <div class="photo-item" onclick="openLightbox(5)"><img src="new5.jpg" alt="Portfolio"><div class="photo-overlay"><div class="photo-overlay-icon">+</div></div></div>
+      <div class="photo-item" onclick="openLightbox(6)"><img src="new2.jpg" alt="Portfolio"><div class="photo-overlay"><div class="photo-overlay-icon">+</div></div></div>
+      <div class="photo-item" onclick="openLightbox(7)"><img src="property-photography-cala-de-mijas-spain-by-photographer-michal-carbol-16-2048x1365-1-high.webp" alt="Portfolio"><div class="photo-overlay"><div class="photo-overlay-icon">+</div></div></div>
+      <div class="photo-item" onclick="openLightbox(8)"><img src="photo2.webp" alt="Portfolio"><div class="photo-overlay"><div class="photo-overlay-icon">+</div></div></div>
+      <div class="photo-item" onclick="openLightbox(9)"><img src="IMG_9916-Edit.webp" alt="Portfolio"><div class="photo-overlay"><div class="photo-overlay-icon">+</div></div></div>
+      <div class="photo-item" onclick="openLightbox(10)"><img src="photo5.jpg" alt="Portfolio"><div class="photo-overlay"><div class="photo-overlay-icon">+</div></div></div>
+    </div>
+  </div>
+
+  <div class="portfolio-panel" id="panel-3d">
+    <div class="floor-grid-wrap">
+      <div class="floor-grid">
+        <div class="floor-item"><img src="fps03_render_v02-high.webp" alt="Floor Plan"></div>
+        <div class="floor-item"><img src="3d-floor-plan-option-a-scaled-high.webp" alt="Floor Plan"></div>
+        <div class="floor-item"><img src="3d-floor-plans-for-realtors-high.webp" alt="Floor Plan"></div>
+        <div class="floor-item"><img src="3d-floor-plan-renderings-for-real-estate-marketing-high.webp" alt="Floor Plan"></div>
+        <div class="floor-item"><img src="3d-floor-plan-rendering-house-columbus-georgia-high.webp" alt="Floor Plan"></div>
+        <div class="floor-item"><img src="3d-floorplans2-high.webp" alt="Floor Plan"></div>
+        <div class="floor-item"><img src="3d_floorplans_8109-s18570-b-0326-2-high.webp" alt="Floor Plan"></div>
+        <div class="floor-item"><img src="3D-Floor-Plan-Renderings-for-Real-Estate-Marketing.jpg" alt="Floor Plan"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <span class="lightbox-close" onclick="closeLightbox()">×</span>
+  <div class="lightbox-prev" onclick="lbNav(-1)">&#8592;</div>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <div class="lightbox-next" onclick="lbNav(1)">&#8594;</div>
+  <div class="lightbox-counter"><span id="lb-num">1</span> / <span id="lb-total">11</span></div>
+</div>
+
+<!-- PACKAGES -->
+<section class="packages" id="pacchetti">
+  <div class="packages-header reveal">
+    <p class="section-eyebrow">Pacchetti</p>
+    <h2 class="section-title">Scegli il pacchetto giusto<br>per il tuo immobile.</h2>
+  </div>
+
+  <div class="packages-grid reveal">
+    <div class="package-card">
+      <div class="package-name">Essenziale</div>
+      <div class="package-tagline">Presentazione efficace</div>
+      <ul class="package-features">
+        <li>Fotografia professionale (10–15 scatti)</li>
+        <li>Selezione e post produzione</li>
+        <li>Alta risoluzione</li>
+        <li>Ottimizzazione portali immobiliari</li>
+      </ul>
+      <div class="package-footer">Perfetto per una presentazione efficace e immediata.</div>
+    </div>
+
+    <div class="package-card featured">
+      <div class="package-name">Avanzato</div>
+      <div class="package-tagline">Impatto visivo massimo</div>
+      <ul class="package-features">
+        <li>Fotografia professionale (15–20 scatti)</li>
+        <li>Video immobiliare (orizz. o verticale)</li>
+        <li>Versione breve per social media</li>
+        <li>Post produzione completa foto e video</li>
+      </ul>
+      <div class="package-footer">Per immobili che vogliono distinguersi.</div>
+    </div>
+
+    <div class="package-card">
+      <div class="package-name">Plus</div>
+      <div class="package-tagline">Social-first</div>
+      <ul class="package-features">
+        <li>Fotografia professionale (10–15 scatti)</li>
+        <li>Video brevi multipli per social</li>
+        <li>Gestione e ottimizzazione contenuti</li>
+        <li>Post produzione completa</li>
+      </ul>
+      <div class="package-footer">Perfetto per promozioni e campagne social.</div>
+    </div>
+
+    <div class="package-card">
+      <div class="package-name">3D</div>
+      <div class="package-tagline">Presentazione immersiva</div>
+      <ul class="package-features">
+        <li>Fotografia professionale (10–15 scatti)</li>
+        <li>Video + elementi 3D integrati</li>
+        <li>Rendering spazi e animazioni</li>
+        <li>Post produzione completa</li>
+        <li>File 3D inclusi</li>
+      </ul>
+      <div class="package-footer">Ideale per immobili di alto livello.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="perche-noi">
+  <div class="why-content reveal">
+    <p class="section-eyebrow">Perché Noi</p>
+    <h2 class="section-title">Un partner operativo.</h2>
+    <div class="white-line"></div>
+    <div class="why-items">
+      <div class="why-item">
+        <div class="why-item-title">Presentazioni che vendono</div>
+        <div class="why-item-text">Ogni servizio è progettato per sostenere concretamente il lavoro dell'agente immobiliare, mostrando l'immobile nella sua migliore luce.</div>
+      </div>
+      <div class="why-item">
+        <div class="why-item-title">Processi semplici, controllo totale</div>
+        <div class="why-item-text">Prenotazione intuitiva, tracciamento degli incarichi e consegne strutturate. Ogni fase è chiara, dal briefing alla consegna finale.</div>
+      </div>
+      <div class="why-item">
+        <div class="why-item-title">Esperienza internazionale</div>
+        <div class="why-item-text">Centinaia di immobili documentati in Italia e nei Paesi Bassi. Un metodo basato su monitoraggio costante e ottimizzazione continua.</div>
+      </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contatti">
+  <p class="section-eyebrow" style="position:relative">Contatti</p>
+  <h2 class="contact-title">Inizia il tuo progetto.</h2>
+  <p class="contact-sub">Raccontaci il tuo immobile e ti risponderemo entro 24 ore con una proposta su misura.</p>
+  <a href="mailto:info@armovision.it" class="contact-email">info@armovision.it</a>
+  <a href="mailto:info@armovision.it" class="btn-primary" style="display:inline-block">Richiedi Preventivo</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><img src="logo.webp" alt="Armo Vision"></div>
+  <div class="footer-copy">© 2026 Armo Vision — armovision.it</div>
+  <div class="footer-links">
+    <a href="#servizi">Servizi</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contatti">Contatti</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(r => observer.observe(r));
+  setTimeout(() => { reveals.forEach(r => r.classList.add('visible')); }, 1500);
+
+  // Lightbox
+  const lbPhotos = ["new1.webp","photo3.jpg","new3.webp","photo4.jpg","new4.jpg","new5.jpg","new2.jpg","property-photography-cala-de-mijas-spain-by-photographer-michal-carbol-16-2048x1365-1-high.webp","photo2.webp","IMG_9916-Edit.webp","photo5.jpg"];
+  let lbCur = 0;
+  document.getElementById('lb-total').textContent = lbPhotos.length;
+
+  function openLightbox(idx) {
+    lbCur = idx;
+    document.getElementById('lightbox-img').src = lbPhotos[idx];
+    document.getElementById('lb-num').textContent = idx + 1;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeLightboxOutside(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
+
+  function lbNav(dir) {
+    lbCur = (lbCur + dir + lbPhotos.length) % lbPhotos.length;
+    document.getElementById('lightbox-img').src = lbPhotos[lbCur];
+    document.getElementById('lb-num').textContent = lbCur + 1;
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lbNav(-1);
+    if (e.key === 'ArrowRight') lbNav(1);
+  });
+
+  // Portfolio tabs
+  function switchTab(tab) {
+    document.querySelectorAll('.portfolio-tab').forEach((t, i) => {
+      t.classList.toggle('active', (i === 0 && tab === 'foto') || (i === 1 && tab === '3d'));
+    });
+    var fotoPanel = document.getElementById('panel-foto');
+    var threeDPanel = document.getElementById('panel-3d');
+    var portfolio = document.querySelector('.portfolio');
+    var eyebrow = document.querySelector('#portfolio .section-eyebrow');
+    var title = document.querySelector('#portfolio .section-title');
+    var tabs = document.querySelector('.portfolio-tabs');
+
+    if (tab === '3d') {
+      fotoPanel.style.display = 'none';
+      threeDPanel.style.display = 'block';
+      portfolio.style.background = 'var(--off-white)';
+      if (eyebrow) eyebrow.style.color = 'rgba(12,12,12,0.35)';
+      if (title) title.style.color = 'var(--black)';
+      if (tabs) tabs.style.filter = '';
+    } else {
+      fotoPanel.style.display = 
